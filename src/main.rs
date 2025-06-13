@@ -1,8 +1,20 @@
 use bevy::{prelude::*, render::mesh::PlaneMeshBuilder};
 
-fn main() {
+mod builder;
+mod ui;
+
+use ui::UiPlugin;
+
+pub fn main() {
     App::new()
-        .add_plugins(DefaultPlugins)
+        .add_plugins(DefaultPlugins.set(WindowPlugin {
+            primary_window: Some(Window {
+                title: "Tileset Generator".into(),
+                ..default()
+            }),
+            ..default()
+        }))
+        .add_plugins(UiPlugin)
         .add_systems(Startup, setup)
         .run();
 }
