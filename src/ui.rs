@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 
-use bevy_egui::{ egui::{self, Slider}, EguiContexts };
+use bevy_egui::{ egui::{self, Slider}, EguiContextPass, EguiContexts };
 
 use crate::builder::{
     Environment,
@@ -11,7 +11,8 @@ pub struct UiPlugin;
 
 impl Plugin for UiPlugin {
     fn build(&self, app: &mut App) {
-        app.add_systems(Update, ui_system);
+        app.init_resource::<Environment>()
+            .add_systems(EguiContextPass, ui_system);
     }
 }
 

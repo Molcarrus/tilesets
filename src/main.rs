@@ -3,6 +3,7 @@ use bevy::{prelude::*, render::mesh::PlaneMeshBuilder};
 mod builder;
 mod ui;
 
+use bevy_egui::EguiPlugin;
 use ui::UiPlugin;
 
 pub fn main() {
@@ -14,6 +15,7 @@ pub fn main() {
             }),
             ..default()
         }))
+        .add_plugins(EguiPlugin { enable_multipass_for_primary_context: true })
         .add_plugins(UiPlugin)
         .add_systems(Startup, setup)
         .run();
