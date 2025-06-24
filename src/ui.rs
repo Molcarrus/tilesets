@@ -20,7 +20,8 @@ fn ui_system(
     mut values: ResMut<Environment>,
     mut contexts: EguiContexts
 ) {
-    egui::Window::new("Environment values").show(contexts.ctx_mut(), |ui| {
+    egui::Window::new("Environment values")
+        .show(contexts.ctx_mut(), |ui| {
         ui.horizontal(|ui| {
             ui.label("Size(rows and columns): ");
             ui.add(Slider::new(
