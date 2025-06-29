@@ -2,9 +2,12 @@ use bevy::{prelude::*, render::mesh::PlaneMeshBuilder};
 
 mod builder;
 mod ui;
+mod camera;
 
 use bevy_egui::EguiPlugin;
 use ui::UiPlugin;
+
+use crate::camera::MainCameraPlugin;
 
 pub fn main() {
     App::new()
@@ -17,6 +20,7 @@ pub fn main() {
         }))
         .add_plugins(EguiPlugin { enable_multipass_for_primary_context: true })
         .add_plugins(UiPlugin)
+        .add_plugins(MainCameraPlugin)
         .add_systems(Startup, setup)
         .run();
 }
@@ -33,11 +37,6 @@ fn setup (
         MeshMaterial3d( materials.add(
             Color::srgb(0.0, 1.0, 0.3)
         )),
-        Transform::from_xyz(0.0, -0.5, 0.0)
-    ));
-
-    commands.spawn((
-        Camera3d::default(),
-        Transform::from_xyz(20.0, 20.0, 0.0).looking_at(Vec3::ZERO, Vec3::Y)
+        Transform::from_xyz(0.0, 0.0, 0.0)
     ));
 }
