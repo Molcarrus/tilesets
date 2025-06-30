@@ -7,6 +7,8 @@ use crate::builder::{
     generate_tileset
 };
 
+use crate::draw::draw;
+
 pub struct UiPlugin;
 
 impl Plugin for UiPlugin {
@@ -17,6 +19,9 @@ impl Plugin for UiPlugin {
 }
 
 fn ui_system(
+    mut commands: Commands,
+    mut meshes: ResMut<Assets<Mesh>>,
+    mut materials: ResMut<Assets<StandardMaterial>>,
     mut values: ResMut<Environment>,
     mut contexts: EguiContexts
 ) {
@@ -41,6 +46,7 @@ fn ui_system(
                 .clicked()
             {
                 values.tileset = generate_tileset(values.size);
+                draw(commands, meshes, materials, values.size, values.tileset.clone());
             }
         })
     });
