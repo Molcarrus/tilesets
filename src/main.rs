@@ -3,7 +3,6 @@ use bevy::{prelude::*, render::mesh::PlaneMeshBuilder};
 mod builder;
 mod ui;
 mod camera;
-mod draw;
 
 use bevy_egui::EguiPlugin;
 use ui::UiPlugin;
