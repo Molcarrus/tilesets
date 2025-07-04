@@ -19,7 +19,8 @@ impl Plugin for UiPlugin {
     fn build(&self, app: &mut App) {
         app.add_event::<ValueChangeEvent>()
             .init_resource::<Environment>()
-            .add_systems(EguiContextPass, ui_system);
+            .add_systems(EguiContextPass, ui_system)
+            .add_systems(Update, render_buildings);
     }
 }
 
